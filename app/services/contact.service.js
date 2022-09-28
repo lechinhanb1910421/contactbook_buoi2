@@ -12,10 +12,9 @@ class ContactService {
       phone: payload.phone,
       favorite: payload.favorite
     }
-    // Objects.keys(contact).forEach(
-    //   key => contact[key] === undefined && delete contact[key]
-    // )
-    console.log(contact)
+    Object.keys(contact).forEach(
+      key => contact[key] === undefined && delete contact[key]
+    )
     return contact
   }
   async create (payload) {
@@ -45,7 +44,7 @@ class ContactService {
     const filter = {
       _id: ObjectId.isValid(id) ? new ObjectId(id) : null
     }
-    const update = this.extractConactData(payload)
+    const update = this.extractContactData(payload)
     const result = await this.Contact.findOneAndUpdate(
       filter,
       { $set: update },
