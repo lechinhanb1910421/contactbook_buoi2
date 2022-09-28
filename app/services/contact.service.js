@@ -20,7 +20,6 @@ class ContactService {
   }
   async create (payload) {
     const contact = this.extractConactData(payload)
-    console.log(contact)
     const result = await this.Contact.findOneAndUpdate(
       contact,
       { $set: { favorite: contact.favorite === true } },
@@ -55,7 +54,6 @@ class ContactService {
     return result.value
   }
   async delete (id) {
-    console.log(id)
     const result = await this.Contact.findOneAndDelete({
       _id: ObjectId.isValid(id) ? new ObjectId(id) : null
     })
